@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>MAA 4211 Real Analysis Study Guide</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --ink: #172033;
+      --muted: #5b667a;
+      --card: #ffffff;
+      --line: #dfe5ef;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --green: #0f766e;
+      --green-soft: #e6f7f4;
+      --orange: #b45309;
+      --orange-soft: #fff4e5;
+      --purple: #6d28d9;
+      --purple-soft: #f2eaff;
+      --red: #b91c1c;
+      --red-soft: #fff0f0;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #172033 0%, #253b72 60%, #2563eb 100%);
+      padding: 42px 20px;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 12px; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.04em; }
+    header p { max-width: 900px; color: #dbeafe; font-size: 1.08rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 15px;
+      font-weight: 800;
+      background: white;
+      color: #172033;
+    }
+    .btn.secondary { background: rgba(255,255,255,0.14); color: white; border: 1px solid rgba(255,255,255,0.3); }
+    .layout {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 24px;
+      padding: 24px 18px 80px;
+    }
+    nav {
+      position: sticky;
+      top: 14px;
+      align-self: start;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+    }
+    nav h2 { margin: 0 0 10px; font-size: 1rem; }
+    nav a { display: block; padding: 7px 9px; color: var(--ink); text-decoration: none; border-radius: 10px; font-size: 0.93rem; }
+    nav a:hover { background: var(--blue-soft); color: var(--blue); }
+    main { min-width: 0; }
+    section, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    section h2 { margin-top: 0; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { margin-top: 24px; margin-bottom: 8px; }
+    .tag { display: inline-block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.07em; padding: 4px 8px; border-radius: 999px; font-weight: 900; margin-bottom: 10px; }
+    .def { background: var(--blue-soft); color: var(--blue); }
+    .thm { background: var(--green-soft); color: var(--green); }
+    .proof { background: var(--purple-soft); color: var(--purple); }
+    .warn { background: var(--orange-soft); color: var(--orange); }
+    .exam { background: var(--red-soft); color: var(--red); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .mini { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 15px; }
+    .mini h4 { margin-top: 0; margin-bottom: 8px; }
+    .box { border-radius: 14px; padding: 14px 16px; margin: 14px 0; border-left: 5px solid var(--blue); background: var(--blue-soft); }
+    .good { border-left-color: var(--green); background: var(--green-soft); }
+    .caution { border-left-color: var(--orange); background: var(--orange-soft); }
+    .formula, pre {
+      overflow-x: auto;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+    }
+    .steps { counter-reset: step; padding-left: 0; list-style: none; }
+    .steps li { counter-increment: step; margin: 10px 0; padding: 12px 14px 12px 48px; background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; position: relative; }
+    .steps li::before { content: counter(step); position: absolute; left: 14px; top: 12px; width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: white; text-align: center; line-height: 24px; font-size: 0.82rem; font-weight: 900; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f8fafc; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.83rem; }
+    details { background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 900; }
+    code { background: #eef2ff; padding: 2px 5px; border-radius: 6px; }
+    .checklist label { display: block; margin: 8px 0; padding: 8px 10px; background: #f8fafc; border: 1px solid var(--line); border-radius: 12px; }
+    .muted { color: var(--muted); }
+    @media print {
+      nav, .actions { display: none; }
+      .layout { display: block; padding: 0; }
+      section, .card { box-shadow: none; break-inside: avoid; }
+      header { padding: 24px; }
+    }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns: 1fr; }
+      nav { position: static; max-height: none; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class='wrap'>
+      <h1>MAA 4211 Real Analysis Study Guide</h1>
+      <p>A proof-focused undergraduate guide for sequences, Cauchy sequences, supremum and infimum, limsup and liminf, metric spaces, completeness, and the main convergence theorems.</p>
+      <div class='actions'>
+        <a class='btn' href='#exam-map'>Start with the exam map</a>
+        <a class='btn secondary' href='#proof-style'>Proof-writing style</a>
+        <a class='btn secondary' href='#practice'>Practice set</a>
+        <a class='btn secondary' href='index.html'>Home</a>
+      </div>
+    </div>
+  </header>
+
+  <div class='layout'>
+    <nav>
+      <h2>Study topics</h2>
+      <a href='#exam-map'>Exam map</a>
+      <a href='#proof-style'>Proof writing</a>
+      <a href='#convergent'>Convergent sequences</a>
+      <a href='#cauchy'>Cauchy sequences</a>
+      <a href='#sup-inf'>Supremum / infimum</a>
+      <a href='#limsup'>Limsup / liminf</a>
+      <a href='#metric'>Metric spaces</a>
+      <a href='#complete'>Completeness</a>
+      <a href='#lub'>LUB property</a>
+      <a href='#mct'>MCT</a>
+      <a href='#squeeze'>Squeeze theorem</a>
+      <a href='#ratio'>Ratio test</a>
+      <a href='#bw'>Bolzano-Weierstrass</a>
+      <a href='#prove-convergence'>How to prove convergence</a>
+      <a href='#compute-limsup'>Compute limsup / liminf</a>
+      <a href='#practice'>Practice set</a>
+    </nav>
+
+    <main>
+      <section id='exam-map'>
+        <span class='tag exam'>Use this first</span>
+        <h2>What you need to know</h2>
+        <p>This exam list has two jobs: know the definitions exactly, and know when to use each theorem. The fastest way to study is to match each problem to the right tool.</p>
+        <table>
+          <thead><tr><th>Problem clue</th><th>Best tool</th><th>What to verify</th></tr></thead>
+          <tbody>
+            <tr><td>It asks for a precise definition.</td><td>State the definition with quantifiers.</td><td>Use the correct order: for every epsilon, there exists N, for all later indices.</td></tr>
+            <tr><td>It says prove from the definition.</td><td>Epsilon proof.</td><td>Choose N from scratch work and finish with the inequality less than epsilon.</td></tr>
+            <tr><td>The sequence is squeezed between two simpler sequences.</td><td>Squeeze Theorem.</td><td>Both bounds converge to the same limit.</td></tr>
+            <tr><td>The sequence is increasing/decreasing and bounded.</td><td>Monotone Convergence Theorem.</td><td>Show monotone algebraically and find the correct bound.</td></tr>
+            <tr><td>Factorials or exponentials appear.</td><td>Ratio Test for sequences.</td><td>Compute |x_(n+1)/x_n| and take the limit.</td></tr>
+            <tr><td>You need a convergent subsequence.</td><td>Bolzano-Weierstrass.</td><td>The original sequence must be bounded.</td></tr>
+            <tr><td>The sequence oscillates forever.</td><td>Subsequences or limsup/liminf.</td><td>Find the highest and lowest values that keep appearing in the tails.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id='proof-style'>
+        <span class='tag proof'>Proof style</span>
+        <h2>How to write proofs in this guide</h2>
+        <p>Use this structure for homework and exam answers. It follows the advanced-calculus style: state the claim, verify the definition or theorem assumptions, then conclude.</p>
+        <pre>Claim:
+State exactly what you are proving.
+
+Proof:
+Let epsilon &gt; 0. State the goal.
+Choose N in N such that ...
+Then for all n &gt;= N, calculate or estimate:
+|x_n - L| = ... &lt; epsilon.
+
+Conclusion:
+Therefore x_n converges to L.</pre>
+        <div class='box caution'><strong>Common proof mistake:</strong> Do not only compute. Explain why the computation proves the definition or verifies the theorem assumptions.</div>
+      </section>
+
+      <section id='convergent'>
+        <span class='tag def'>Definition</span>
+        <h2>1. Convergent sequence</h2>
+        <h3>Real numbers</h3>
+        <p>A sequence (x<sub>n</sub>) of real numbers converges to L in R if:</p>
+        <div class='formula'>For every epsilon &gt; 0, there exists N in N such that
+for all n &gt;= N, |x_n - L| &lt; epsilon.</div>
+        <div class='box'><strong>Intuition:</strong> You give any small error tolerance epsilon. After some index N, every term must stay inside the band from L - epsilon to L + epsilon.</div>
+        <h3>Metric spaces</h3>
+        <p>In a metric space (X,d), a sequence (x<sub>n</sub>) converges to x in X if:</p>
+        <div class='formula'>For every epsilon &gt; 0, there exists N in N such that
+for all n &gt;= N, d(x_n, x) &lt; epsilon.</div>
+        <p>The only change is replacing absolute value distance |x<sub>n</sub> - x| with the metric d(x<sub>n</sub>,x).</p>
+        <details open>
+          <summary>Example: prove 1/n converges to 0</summary>
+          <p><strong>Claim:</strong> The sequence x<sub>n</sub> = 1/n converges to 0.</p>
+          <p><strong>Proof:</strong> Let epsilon &gt; 0. Choose N in N such that N &gt; 1/epsilon. If n &gt;= N, then</p>
+          <div class='formula'>|1/n - 0| = 1/n &lt;= 1/N &lt; epsilon.</div>
+          <p><strong>Conclusion:</strong> Therefore 1/n converges to 0.</p>
+        </details>
+        <details>
+          <summary>Example: prove n/(n^2+1) converges to 0</summary>
+          <p>For n in N, n<sup>2</sup> + 1 &gt; n<sup>2</sup>, so</p>
+          <div class='formula'>0 &lt; n/(n^2+1) &lt; n/n^2 = 1/n.</div>
+          <p>Since 1/n goes to 0, the Squeeze Theorem gives n/(n<sup>2</sup>+1) goes to 0.</p>
+        </details>
+        <details>
+          <summary>Non-example: (-1)^n does not converge</summary>
+          <p>The even subsequence is constantly 1, so it converges to 1. The odd subsequence is constantly -1, so it converges to -1. If the original sequence converged, all subsequences would have the same limit. They do not, so (-1)<sup>n</sup> diverges.</p>
+        </details>
+      </section>
+
+      <section id='cauchy'>
+        <span class='tag def'>Definition</span>
+        <h2>2. Cauchy sequence</h2>
+        <p>A sequence (x<sub>n</sub>) in R is Cauchy if:</p>
+        <div class='formula'>For every epsilon &gt; 0, there exists N in N such that
+for all n,k &gt;= N, |x_n - x_k| &lt; epsilon.</div>
+        <p>In a metric space, replace |x<sub>n</sub> - x<sub>k</sub>| with d(x<sub>n</sub>,x<sub>k</sub>).</p>
+        <div class='box'><strong>Intuition:</strong> Convergent means the terms get close to a known limit. Cauchy means the terms get close to each other, even if you do not know the limit yet.</div>
+        <details open>
+          <summary>Example: 1/n is Cauchy</summary>
+          <p>Let epsilon &gt; 0. Choose N &gt; 2/epsilon. If n,k &gt;= N, then by the triangle inequality,</p>
+          <div class='formula'>|1/n - 1/k| &lt;= |1/n| + |1/k| &lt;= 1/N + 1/N = 2/N &lt; epsilon.</div>
+          <p>Therefore (1/n) is Cauchy.</p>
+        </details>
+        <details>
+          <summary>Non-example: (-1)^n is not Cauchy</summary>
+          <p>Take epsilon = 1. No matter how far out you start, you can find one even index and one odd index. The terms are 1 and -1, so the distance is 2, which is not less than 1. Therefore the sequence is not Cauchy.</p>
+        </details>
+      </section>
+
+      <section id='sup-inf'>
+        <span class='tag def'>Definition</span>
+        <h2>3. Supremum and infimum</h2>
+        <div class='grid-2'>
+          <div class='mini'>
+            <h4>Supremum</h4>
+            <p>s = sup A means s is the least upper bound of A.</p>
+            <ol>
+              <li>For every a in A, a &lt;= s.</li>
+              <li>If u is any upper bound of A, then s &lt;= u.</li>
+            </ol>
+          </div>
+          <div class='mini'>
+            <h4>Infimum</h4>
+            <p>m = inf A means m is the greatest lower bound of A.</p>
+            <ol>
+              <li>For every a in A, m &lt;= a.</li>
+              <li>If l is any lower bound of A, then l &lt;= m.</li>
+            </ol>
+          </div>
+        </div>
+        <div class='box'><strong>Intuition:</strong> Supremum is the tightest ceiling. Infimum is the tightest floor. They do not have to be elements of the set.</div>
+        <details open>
+          <summary>Example: sup(0,1) = 1</summary>
+          <p>First, 1 is an upper bound because every x in (0,1) satisfies x &lt;= 1. Second, no number u &lt; 1 can be an upper bound because there is always a point between u and 1 that still lies in (0,1). Therefore the least upper bound is 1.</p>
+        </details>
+        <details>
+          <summary>Example: inf{1/n : n in N} = 0</summary>
+          <p>Every 1/n is positive, so 0 is a lower bound. If m &gt; 0, choose n &gt; 1/m. Then 1/n &lt; m, so m cannot be a lower bound. Therefore the greatest lower bound is 0.</p>
+        </details>
+      </section>
+
+      <section id='limsup'>
+        <span class='tag def'>Definition</span>
+        <h2>4. Limit superior and limit inferior</h2>
+        <p>Let (x<sub>n</sub>) be a bounded sequence. Define the tail supremum and tail infimum:</p>
+        <div class='formula'>a_n = sup{x_k : k &gt;= n}
+b_n = inf{x_k : k &gt;= n}</div>
+        <p>Then:</p>
+        <div class='formula'>lim sup x_n = lim a_n
+lim inf x_n = lim b_n</div>
+        <div class='box'><strong>Intuition:</strong> limsup is the eventual ceiling of the tails. liminf is the eventual floor of the tails. Ignore the first few terms and ask what high and low behavior keeps coming back forever.</div>
+        <table>
+          <thead><tr><th>Sequence</th><th>limsup</th><th>liminf</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>1/n</td><td>0</td><td>0</td><td>The tails shrink to 0.</td></tr>
+            <tr><td>(-1)^n</td><td>1</td><td>-1</td><td>Both values appear forever.</td></tr>
+            <tr><td>0,1,2,0,1,2,...</td><td>2</td><td>0</td><td>Every tail still contains 0 and 2.</td></tr>
+            <tr><td>(-1)^n + 1/n</td><td>1</td><td>-1</td><td>Even terms approach 1; odd terms approach -1.</td></tr>
+            <tr><td>1 if n is a square, 0 otherwise</td><td>1</td><td>0</td><td>Squares and non-squares both occur forever.</td></tr>
+          </tbody>
+        </table>
+        <div class='box good'><strong>Convergence test:</strong> A bounded sequence converges if and only if limsup equals liminf. The common value is the limit.</div>
+      </section>
+
+      <section id='metric'>
+        <span class='tag def'>Definition</span>
+        <h2>5. Metric space and distance function</h2>
+        <p>A metric space is a set X together with a function d: X x X &rarr; R satisfying, for all x,y,z in X:</p>
+        <table>
+          <thead><tr><th>Rule</th><th>Statement</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>Positive definiteness</td><td>d(x,y) &gt;= 0 and d(x,y)=0 iff x=y</td><td>Distance is never negative, and only the same point has distance 0 from itself.</td></tr>
+            <tr><td>Symmetry</td><td>d(x,y)=d(y,x)</td><td>Distance does not depend on direction.</td></tr>
+            <tr><td>Triangle inequality</td><td>d(x,z) &lt;= d(x,y)+d(y,z)</td><td>Going straight is no longer than taking a detour.</td></tr>
+          </tbody>
+        </table>
+        <h3>Examples</h3>
+        <div class='grid-2'>
+          <div class='mini'><h4>Standard metric on R</h4><p>d(x,y)=|x-y|.</p></div>
+          <div class='mini'><h4>Discrete metric</h4><p>d(x,y)=0 if x=y, and d(x,y)=1 if x is not y.</p></div>
+          <div class='mini'><h4>Euclidean metric on R^n</h4><p>d(x,y)=sqrt((x_1-y_1)^2 + ... + (x_n-y_n)^2).</p></div>
+          <div class='mini'><h4>Arctan metric on R</h4><p>d(x,y)=|arctan(x)-arctan(y)|.</p></div>
+        </div>
+      </section>
+
+      <section id='complete'>
+        <span class='tag def'>Definition</span>
+        <h2>6. Completeness</h2>
+        <p>A metric space (X,d) is complete if every Cauchy sequence in X converges to a point inside X.</p>
+        <div class='formula'>(X,d) complete means:
+Cauchy in X  =&gt;  converges in X.</div>
+        <div class='box'><strong>Intuition:</strong> Complete spaces have no missing Cauchy limits. If a Cauchy sequence is trying to settle down, the place it settles must still be inside the space.</div>
+        <table>
+          <thead><tr><th>Space</th><th>Complete?</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>(R, usual metric)</td><td>Yes</td><td>Every real Cauchy sequence converges to a real number.</td></tr>
+            <tr><td>((0,1), usual metric)</td><td>No</td><td>1/n is Cauchy but converges to 0, which is not in (0,1).</td></tr>
+            <tr><td>([0,1], usual metric)</td><td>Yes</td><td>A closed interval contains its limit points.</td></tr>
+            <tr><td>(Q, usual metric)</td><td>No</td><td>A rational sequence can be Cauchy and converge to sqrt(2), which is not rational.</td></tr>
+            <tr><td>(R, arctan metric)</td><td>No</td><td>The sequence n is Cauchy under arctan distance but has no real limit in that metric.</td></tr>
+            <tr><td>(R, discrete metric)</td><td>Yes</td><td>Cauchy sequences are eventually constant, so they converge.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id='lub'>
+        <span class='tag thm'>Theorem</span>
+        <h2>7. Least Upper Bound Property of R</h2>
+        <p><strong>Precise statement:</strong> Every nonempty subset of R that is bounded above has a supremum in R.</p>
+        <div class='box'><strong>Why it matters:</strong> This is the completeness property of the real numbers in order form. It says the real line has no holes.</div>
+        <details open>
+          <summary>Non-example in Q</summary>
+          <p>The set A = {q in Q : q^2 &lt; 2} is nonempty and bounded above in Q, but its natural least upper bound is sqrt(2), which is not in Q. This shows why Q does not have the same completeness property.</p>
+        </details>
+      </section>
+
+      <section id='mct'>
+        <span class='tag thm'>Theorem</span>
+        <h2>8. Monotone Convergence Theorem</h2>
+        <p><strong>Precise statement:</strong> A monotone sequence of real numbers is bounded if and only if it converges. More specifically:</p>
+        <div class='formula'>If (x_n) is increasing and bounded above, then x_n converges and
+lim x_n = sup{x_n : n in N}.
+
+If (x_n) is decreasing and bounded below, then x_n converges and
+lim x_n = inf{x_n : n in N}.</div>
+        <h3>How to use it</h3>
+        <ol class='steps'>
+          <li>Show monotone: prove x<sub>n</sub> &lt;= x<sub>n+1</sub> or x<sub>n</sub> &gt;= x<sub>n+1</sub>.</li>
+          <li>Show bounded in the correct direction.</li>
+          <li>Conclude the sequence converges by the Monotone Convergence Theorem.</li>
+          <li>If asked for the limit, identify the supremum or infimum.</li>
+        </ol>
+        <div class='box caution'><strong>Common mistake:</strong> Do not say a sequence is monotone because it looks like it. Show it using x<sub>n+1</sub>-x<sub>n</sub>, x<sub>n+1</sub>/x<sub>n</sub>, or a direct comparison.</div>
+      </section>
+
+      <section id='squeeze'>
+        <span class='tag thm'>Theorem</span>
+        <h2>9. Squeeze Theorem</h2>
+        <p><strong>Precise statement:</strong> If a<sub>n</sub> &lt;= x<sub>n</sub> &lt;= b<sub>n</sub> for all sufficiently large n, and a<sub>n</sub> &rarr; L and b<sub>n</sub> &rarr; L, then x<sub>n</sub> &rarr; L.</p>
+        <div class='box'><strong>Intuition:</strong> If x<sub>n</sub> is trapped between two sequences that both close in on the same number, x<sub>n</sub> has no choice but to go there too.</div>
+        <details open>
+          <summary>Example: sin(n)/n converges to 0</summary>
+          <p>Since -1 &lt;= sin(n) &lt;= 1, dividing by positive n gives:</p>
+          <div class='formula'>-1/n &lt;= sin(n)/n &lt;= 1/n.</div>
+          <p>Both -1/n and 1/n converge to 0. Therefore sin(n)/n converges to 0 by Squeeze.</p>
+        </details>
+      </section>
+
+      <section id='ratio'>
+        <span class='tag thm'>Theorem</span>
+        <h2>10. Ratio Test for convergence of sequences</h2>
+        <p>Let x<sub>n</sub> be nonzero eventually and suppose the following limit exists:</p>
+        <div class='formula'>L = lim |x_(n+1) / x_n|.</div>
+        <ul>
+          <li>If L &lt; 1, then x<sub>n</sub> converges to 0.</li>
+          <li>If L &gt; 1, then (x<sub>n</sub>) is unbounded and diverges.</li>
+          <li>If L = 1, the test gives no conclusion.</li>
+        </ul>
+        <details open>
+          <summary>Example: x_n = 2^n/n!</summary>
+          <div class='formula'>|x_(n+1)/x_n| = [2^(n+1)/(n+1)!] [n!/2^n] = 2/(n+1) &rarr; 0.</div>
+          <p>Since 0 &lt; 1, the Ratio Test says 2<sup>n</sup>/n! converges to 0.</p>
+        </details>
+        <details>
+          <summary>When L = 1</summary>
+          <p>The test is inconclusive. Examples: 1/n converges to 0, (-1)<sup>n</sup> diverges by oscillation, and n diverges to infinity. All have ratio limit 1 in the appropriate sense.</p>
+        </details>
+      </section>
+
+      <section id='bw'>
+        <span class='tag thm'>Theorem</span>
+        <h2>11. Bolzano-Weierstrass Theorem</h2>
+        <p><strong>Sequence version:</strong> Every bounded sequence of real numbers has a convergent subsequence.</p>
+        <div class='box'><strong>Intuition:</strong> Boundedness prevents escape to infinity. Even if the full sequence jumps around, some carefully chosen subsequence must settle down.</div>
+        <details open>
+          <summary>Example: (-1)^n</summary>
+          <p>The sequence is bounded but not convergent. Still, it has convergent subsequences: the even subsequence is constantly 1, and the odd subsequence is constantly -1.</p>
+        </details>
+        <details>
+          <summary>Set version</summary>
+          <p>Every bounded infinite subset of R has at least one cluster point. This is the set version of the same idea: infinitely many points inside a bounded region must crowd somewhere.</p>
+        </details>
+      </section>
+
+      <section id='prove-convergence'>
+        <span class='tag proof'>Exam skill</span>
+        <h2>12. How to prove a sequence converges</h2>
+        <h3>Direct epsilon proof</h3>
+        <ol class='steps'>
+          <li>Guess the limit L.</li>
+          <li>Start with |x<sub>n</sub>-L|.</li>
+          <li>Use scratch work to decide how large n must be.</li>
+          <li>Choose N based on epsilon.</li>
+          <li>Write the final proof in clean order.</li>
+        </ol>
+        <pre>Claim: x_n converges to L.
+
+Proof: Let epsilon &gt; 0. Choose N in N such that N &gt; ____.
+If n &gt;= N, then
+|x_n - L| = ____ &lt;= ____ &lt; epsilon.
+
+Conclusion: Therefore x_n converges to L.</pre>
+        <h3>Theorem-based proof</h3>
+        <pre>Claim: The sequence converges.
+
+Proof: We verify the assumptions of [theorem].
+First, ...
+Second, ...
+Therefore, by [theorem], the sequence converges.
+
+Conclusion: The theorem applies because all assumptions were checked.</pre>
+      </section>
+
+      <section id='compute-limsup'>
+        <span class='tag proof'>Exam skill</span>
+        <h2>13. How to compute limsup and liminf</h2>
+        <h3>Method A: tail sup/inf</h3>
+        <ol class='steps'>
+          <li>Write the n-tail: {x<sub>k</sub> : k &gt;= n}.</li>
+          <li>Find a<sub>n</sub> = sup of that tail.</li>
+          <li>Find b<sub>n</sub> = inf of that tail.</li>
+          <li>Take lim a<sub>n</sub> and lim b<sub>n</sub>.</li>
+        </ol>
+        <h3>Method B: subsequential limits</h3>
+        <ol class='steps'>
+          <li>Find the subsequences that capture the long-term high behavior.</li>
+          <li>Find the subsequences that capture the long-term low behavior.</li>
+          <li>The largest subsequential limit is limsup.</li>
+          <li>The smallest subsequential limit is liminf.</li>
+        </ol>
+        <details open>
+          <summary>Worked example: x_n = (-1)^n + 1/n</summary>
+          <p>Even n: (-1)<sup>n</sup>=1, so x<sub>n</sub>=1+1/n &rarr; 1. Odd n: (-1)<sup>n</sup>=-1, so x<sub>n</sub>=-1+1/n &rarr; -1. Therefore:</p>
+          <div class='formula'>limsup x_n = 1
+liminf x_n = -1</div>
+        </details>
+      </section>
+
+      <section id='practice'>
+        <span class='tag exam'>Practice</span>
+        <h2>Practice set with quick answers</h2>
+        <div class='checklist'>
+          <label><input type='checkbox'> I can state the convergence definition in R.</label>
+          <label><input type='checkbox'> I can state the Cauchy definition in a metric space.</label>
+          <label><input type='checkbox'> I can prove 1/n converges to 0 from the definition.</label>
+          <label><input type='checkbox'> I can decide when to use Squeeze, MCT, Ratio Test, or Bolzano-Weierstrass.</label>
+          <label><input type='checkbox'> I can compute limsup and liminf for an oscillating sequence.</label>
+        </div>
+        <details>
+          <summary>1. Prove (3n+1)/(n+2) converges to 3.</summary>
+          <p>|(3n+1)/(n+2)-3| = 5/(n+2). Choose N &gt; 5/epsilon.</p>
+        </details>
+        <details>
+          <summary>2. Show 1/sqrt(n) converges to 0.</summary>
+          <p>Use a direct epsilon proof: choose N &gt; 1/epsilon^2.</p>
+        </details>
+        <details>
+          <summary>3. Find limsup and liminf of 0,1,2,0,1,2,...</summary>
+          <p>limsup = 2 and liminf = 0 because every tail contains 0 and 2.</p>
+        </details>
+        <details>
+          <summary>4. Is ((0,1), usual metric) complete?</summary>
+          <p>No. The sequence 1/n is Cauchy but converges to 0, which is outside (0,1).</p>
+        </details>
+        <details>
+          <summary>5. State Bolzano-Weierstrass.</summary>
+          <p>Every bounded sequence of real numbers has a convergent subsequence.</p>
+        </details>
+      </section>
+
+      <section>
+        <span class='tag warn'>Source map</span>
+        <h2>Where this guide comes from</h2>
+        <ul>
+          <li>Lecture 3: absolute value, metric spaces, open balls, bounded sequences, and convergence.</li>
+          <li>Lecture 4: epsilon proofs, uniqueness of limits, monotone convergence, subsequences, tails, and metric-space convergence.</li>
+          <li>Lecture 5: Squeeze Lemma, order limits, algebraic limit laws, Ratio Test, and limsup/liminf.</li>
+          <li>Lecture 6: limsup/liminf properties, Bolzano-Weierstrass, cluster points, Cauchy sequences, completeness, and examples of complete/non-complete metric spaces.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
