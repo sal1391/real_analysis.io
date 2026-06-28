@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="strict-origin-when-cross-origin" name="referrer"/>
+<title>MAA 4211 Real Analysis Problem-Solving Guide + Embedded Videos</title>
+<script>
+    window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+    :root {
+      --bg: #f6f7fb;
+      --ink: #172033;
+      --muted: #5b667a;
+      --card: #ffffff;
+      --line: #dfe5ef;
+      --blue: #2563eb;
+      --blue2: #eaf1ff;
+      --green: #0f766e;
+      --green2: #e6f7f4;
+      --orange: #b45309;
+      --orange2: #fff4e5;
+      --purple: #6d28d9;
+      --purple2: #f2eaff;
+      --red: #b91c1c;
+      --red2: #fff0f0;
+      --shadow: 0 8px 24px rgba(15, 23, 42, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+    header { background: linear-gradient(135deg, #172033 0%, #253b72 60%, #2563eb 100%); color: white; padding: 42px 22px; }
+    header .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; letter-spacing: -0.04em; }
+    header p { max-width: 920px; margin: 12px 0 22px; color: #dbeafe; font-size: 1.08rem; }
+    .top-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+    .btn { display: inline-block; padding: 10px 14px; border-radius: 999px; background: white; color: #172033; text-decoration: none; font-weight: 800; border: 1px solid rgba(255,255,255,.3); }
+    .btn.secondary { background: rgba(255,255,255,.12); color: white; }
+    .layout { max-width: 1180px; margin: 0 auto; padding: 24px 18px 80px; display: grid; grid-template-columns: 285px 1fr; gap: 24px; }
+    nav { position: sticky; top: 14px; align-self: start; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; box-shadow: var(--shadow); max-height: calc(100vh - 28px); overflow: auto; }
+    nav h2 { margin: 0 0 10px; font-size: 1rem; }
+    nav a { display: block; padding: 7px 9px; color: var(--ink); text-decoration: none; border-radius: 10px; font-size: .92rem; }
+    nav a:hover { background: var(--blue2); color: var(--blue); }
+    main { min-width: 0; }
+    section, .card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin-bottom: 18px; box-shadow: var(--shadow); }
+    section h2 { margin-top: 0; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { margin-top: 24px; margin-bottom: 8px; font-size: 1.15rem; }
+    h4 { margin-bottom: 6px; }
+    .tag { display: inline-block; font-size: .78rem; text-transform: uppercase; letter-spacing: .07em; padding: 4px 8px; border-radius: 999px; font-weight: 900; margin-bottom: 10px; }
+    .tag.def { background: var(--blue2); color: var(--blue); }
+    .tag.tool { background: var(--green2); color: var(--green); }
+    .tag.warn { background: var(--orange2); color: var(--orange); }
+    .tag.proof { background: var(--purple2); color: var(--purple); }
+    .tag.exam { background: var(--red2); color: var(--red); }
+    .video-row { display: flex; gap: 9px; flex-wrap: wrap; margin: 12px 0 16px; }
+
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin: 14px 0 20px; }
+    .video-card { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 12px; box-shadow: 0 4px 14px rgba(15, 23, 42, .05); }
+    .video-card h4 { margin: 0 0 10px; font-size: .98rem; line-height: 1.25; }
+    .video-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 12px; background: #0f172a; }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .video-card .yt-link { display: inline-block; margin-top: 9px; color: #1d4ed8; font-weight: 800; text-decoration: none; font-size: .9rem; }
+    .playlist-embed { background: #f8fafc; border: 1px solid var(--line); border-radius: 18px; padding: 14px; margin: 14px 0 20px; }
+
+    a.video { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #1d4ed8; background: #eef4ff; border: 1px solid #c7d7fe; padding: 8px 10px; border-radius: 999px; font-weight: 800; font-size: .91rem; }
+    a.video:hover { background: #dbe8ff; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .mini { background: #f8fafc; border: 1px solid var(--line); border-radius: 16px; padding: 15px; }
+    .mini h4 { margin-top: 0; }
+    .formula { overflow-x: auto; background: #0f172a; color: #e2e8f0; border-radius: 16px; padding: 14px 16px; margin: 12px 0; }
+    .formula code { color: #e2e8f0; white-space: pre-wrap; }
+    .steps { counter-reset: step; padding-left: 0; list-style: none; }
+    .steps li { counter-increment: step; margin: 10px 0; padding: 12px 14px 12px 48px; background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; position: relative; }
+    .steps li::before { content: counter(step); position: absolute; left: 14px; top: 12px; width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: white; text-align: center; line-height: 24px; font-size: .82rem; font-weight: 900; }
+    .warnbox { border-left: 5px solid var(--orange); background: var(--orange2); padding: 14px 16px; border-radius: 12px; margin: 14px 0; }
+    .goodbox { border-left: 5px solid var(--green); background: var(--green2); padding: 14px 16px; border-radius: 12px; margin: 14px 0; }
+    .bluebox { border-left: 5px solid var(--blue); background: var(--blue2); padding: 14px 16px; border-radius: 12px; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f8fafc; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    details { background: #f8fafc; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin: 10px 0; }
+    summary { cursor: pointer; font-weight: 900; }
+    .checklist label { display:block; margin: 8px 0; padding: 8px 10px; background: #f8fafc; border: 1px solid var(--line); border-radius: 12px; }
+    .muted { color: var(--muted); }
+    .small { font-size: .89rem; }
+    .print-note { font-size: .85rem; color: #dbeafe; }
+    @media print {
+      nav, .top-actions { display: none; }
+      .layout { display: block; padding: 0; }
+      section, .card { box-shadow: none; break-inside: avoid; }
+      header { padding: 24px; }
+      a::after { content: " (" attr(href) ")"; font-size: .8em; }
+    }
+    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } nav { position: static; max-height: none; } .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+  
+
+    .embed-warning { border-left: 6px solid #b45309; background: #fff7ed; border-radius: 16px; padding: 16px 18px; margin: 18px 0 0; color: #172033; }
+    .embed-warning strong { color: #9a3412; }
+    .embed-warning code { background: #111827; color: #f9fafb; padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+    .server-steps { margin: 10px 0 0; padding-left: 20px; }
+    .local-file .video-frame::before { content: "Open this HTML through http://localhost to load embedded YouTube videos"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; color:#e5e7eb; font-weight:800; background:#111827; z-index:1; }
+    .local-file .video-frame iframe { visibility: hidden; }
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<h1>MAA 4211 Problem-Solving Guide + Embedded Videos</h1>
+<p>Chunked Real Analysis study guide built around your exam list and the Wrath of Math Real Analysis playlist. Topic sections now include embedded videos, intuition, exact statements, templates, examples, and practice problems.</p>
+<div class="top-actions">
+<a class="btn" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli" rel="noopener" target="_blank">Open full playlist</a>
+<a class="btn secondary" href="#decision-tree">Start with the decision tree</a>
+<a class="btn secondary" href="#practice-set">Jump to practice set</a>
+</div>
+<p class="print-note">Tip: Use Ctrl+F to search a theorem name. Print to PDF from your browser if you want a printable copy.</p>
+</div>
+<div class="wrap embed-warning" id="youtube-error-153-help">
+<strong>If you see YouTube Error 153:</strong> the videos are not broken. YouTube often blocks embedded players when an HTML file is opened directly from your computer or inside a restricted preview because there is no normal website referrer/origin.
+<ol class="server-steps">
+<li>Download this HTML file.</li>
+<li>Put it in a folder by itself.</li>
+<li>Open Terminal or Command Prompt in that folder.</li>
+<li>Run <code>python -m http.server 8000</code></li>
+<li>Open <code>http://localhost:8000/maa4211_video_problem_solving_guide_embedded_fixed.html</code></li>
+</ol>
+<p class="small">Every video card also has an <strong>Open on YouTube</strong> link as a backup.</p>
+</div></header>
+<div class="layout">
+<nav>
+<h2>Topics</h2>
+<a href="#video-plan">Video plan</a>
+<a href="#decision-tree">Which tool do I use?</a>
+<a href="#convergent-real">Convergent sequences in R</a>
+<a href="#metric-convergence">Convergence in metric spaces</a>
+<a href="#cauchy">Cauchy sequences</a>
+<a href="#sup-inf">Supremum and infimum</a>
+<a href="#lub">Least Upper Bound Property</a>
+<a href="#limsup-liminf">Limit superior / inferior</a>
+<a href="#metric-space">Metric spaces</a>
+<a href="#complete">Completeness</a>
+<a href="#mct">Monotone Convergence Theorem</a>
+<a href="#squeeze">Squeeze Theorem</a>
+<a href="#ratio">Ratio Test for sequences</a>
+<a href="#bw">Bolzano-Weierstrass</a>
+<a href="#prove-convergence">Proving convergence</a>
+<a href="#compute-limsup">Computing limsup / liminf</a>
+<a href="#practice-set">Practice set</a>
+</nav>
+<main>
+<section id="video-plan">
+<span class="tag exam">Use this first</span>
+<h2>Chunked video study plan</h2>
+<p>Watch in this order. After each chunk, immediately do one written problem from that topic. Do not only watch; the exam is about writing definitions and proofs.</p><div class="playlist-embed" id="full-playlist-embed"><h3>Full playlist embedded</h3><p>Use this if you want to stay inside the whole playlist, then use the topic sections below for targeted videos.</p><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Wrath of Math Real Analysis playlist"></iframe></div></div>
+<table>
+<thead><tr><th>Chunk</th><th>Watch</th><th>Then solve</th></tr></thead>
+<tbody>
+<tr><td>1. Sequences and limits</td><td><a class="video" href="https://www.youtube.com/watch?v=YEiZWonJrOg&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=18" rel="noopener" target="_blank">▶ Intro to Sequences</a> <a class="video" href="https://www.youtube.com/watch?v=cTnlHZD5ss4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=19" rel="noopener" target="_blank">▶ Definition of Limit of a Sequence</a></td><td>Prove $1/n \to 0$ from the definition.</td></tr>
+<tr><td>2. Sup / inf</td><td><a class="video" href="https://www.youtube.com/watch?v=QRGIhqz9vh4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=4" rel="noopener" target="_blank">▶ Definition of Supremum and Infimum</a> <a class="video" href="https://www.youtube.com/watch?v=lCpoEWJRYNk&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=6" rel="noopener" target="_blank">▶ Epsilon Definition of Sup/Inf</a></td><td>Prove $\sup(0,1)=1$ and $\inf\{1/n:n\in\mathbb N\}=0$.</td></tr>
+<tr><td>3. Bounded and subsequences</td><td><a class="video" href="https://www.youtube.com/watch?v=hkCKQdAFLAw&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=31" rel="noopener" target="_blank">▶ Bounded Sequences</a> <a class="video" href="https://www.youtube.com/watch?v=KqX0mKcV_3A&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=39" rel="noopener" target="_blank">▶ Intro to Subsequences</a></td><td>Show $(-1)^n$ is bounded but divergent.</td></tr>
+<tr><td>4. Squeeze and limit laws</td><td><a class="video" href="https://www.youtube.com/watch?v=hYY9piVkB6g&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=41" rel="noopener" target="_blank">▶ Sequence Squeeze Theorem</a> <a class="video" href="https://www.youtube.com/watch?v=dWLhfYUb3wc&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=34" rel="noopener" target="_blank">▶ Sequence Limit Laws</a></td><td>Use Squeeze to show $1/\sqrt n \to 0$.</td></tr>
+<tr><td>5. Monotone convergence</td><td><a class="video" href="https://www.youtube.com/watch?v=E_vaJWaeNSU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=43" rel="noopener" target="_blank">▶ Monotone Sequences</a> <a class="video" href="https://www.youtube.com/watch?v=4NURDmE79VU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=44" rel="noopener" target="_blank">▶ Monotone Convergence Theorem</a> <a class="video" href="https://www.youtube.com/watch?v=AuvBS7UKxqU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=45" rel="noopener" target="_blank">▶ Using MCT</a></td><td>Show a sequence is monotone and bounded, then state the conclusion.</td></tr>
+<tr><td>6. Limsup / liminf</td><td><a class="video" href="https://www.youtube.com/watch?v=P0xaphc2cCo&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=46" rel="noopener" target="_blank">▶ Limsup and Liminf Explained</a></td><td>Compute limsup/liminf for $(-1)^n$, $1/n$, and a periodic sequence.</td></tr>
+<tr><td>7. Bolzano-Weierstrass and Cauchy</td><td><a class="video" href="https://www.youtube.com/watch?v=EGVNs0AxEKw&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=57" rel="noopener" target="_blank">▶ Short Bolzano-Weierstrass Proof</a> <a class="video" href="https://www.youtube.com/watch?v=VNoHcFoawTg&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=59" rel="noopener" target="_blank">▶ Intro to Cauchy Sequences</a> <a class="video" href="https://www.youtube.com/watch?v=1h_CErk0NFs&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=60" rel="noopener" target="_blank">▶ Cauchy iff Convergent</a></td><td>Explain why every bounded sequence has a convergent subsequence, and why every Cauchy sequence in $\mathbb R$ converges.</td></tr>
+<tr><td>8. Metric-space support</td><td><a class="video" href="https://www.youtube.com/watch?v=051WWg9twO0&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=15" rel="noopener" target="_blank">▶ Triangle Inequality</a> <a class="video" href="https://www.youtube.com/watch?v=M694UFkNlFE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=24" rel="noopener" target="_blank">▶ Neighborhood of a Point</a> <a class="video" href="https://www.youtube.com/watch?v=pnWgj8jjs3w&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=70" rel="noopener" target="_blank">▶ Open Sets</a></td><td>Verify a metric and rewrite convergence/Cauchy using $d(x,y)$.</td></tr>
+</tbody>
+</table>
+</section>
+<section id="decision-tree">
+<span class="tag tool">Decision tree</span>
+<h2>Which tool do I use?</h2>
+<div class="grid-2">
+<div class="mini">
+<h4>Problem says: “prove from the definition”</h4>
+<p>Use the exact $\varepsilon$ definition. Do scratch work to choose $N$, then write the proof cleanly.</p>
+</div>
+<div class="mini">
+<h4>Sequence is trapped between two simpler sequences</h4>
+<p>Use the Squeeze Theorem.</p>
+</div>
+<div class="mini">
+<h4>Sequence is increasing/decreasing and bounded</h4>
+<p>Use the Monotone Convergence Theorem.</p>
+</div>
+<div class="mini">
+<h4>You need a convergent subsequence from a bounded sequence</h4>
+<p>Use Bolzano-Weierstrass.</p>
+</div>
+<div class="mini">
+<h4>You do not know the limit, but terms get close to each other</h4>
+<p>Try Cauchy. In $\mathbb R$, Cauchy implies convergent.</p>
+</div>
+<div class="mini">
+<h4>Sequence oscillates</h4>
+<p>Try subsequences or limsup/liminf. If two subsequences have different limits, the sequence diverges.</p>
+</div>
+</div>
+</section>
+<section id="convergent-real">
+<span class="tag def">Definition</span>
+<h2>1. Convergent sequence of real numbers</h2>
+<div class="video-grid"><div class="video-card"><h4>Intro to Sequences</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/YEiZWonJrOg?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Intro to Sequences"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=YEiZWonJrOg&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=18" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Definition of the Limit of a Sequence</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/cTnlHZD5ss4?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Definition of the Limit of a Sequence"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=cTnlHZD5ss4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=19" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Proof: 1/sqrt(n) -&gt; 0</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/HBtn8uy3iGE?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Proof: 1/sqrt(n) -&gt; 0"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=HBtn8uy3iGE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=20" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Limit is Unique</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/1xsIpCa961w?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Limit is Unique"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=1xsIpCa961w&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=21" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Proof: (-1)^n Diverges</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/nEBF2oIS9Dk?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Proof: (-1)^n Diverges"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=nEBF2oIS9Dk&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=30" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Precise statement:</strong> A sequence $\{x_n\}$ converges to $L\in\mathbb R$ if</p>
+<div class="formula">$$\forall \varepsilon&gt;0,\ \exists N\in\mathbb N\text{ such that }n\ge N\Rightarrow |x_n-L|&lt;\varepsilon.$$</div>
+<div class="bluebox"><strong>Intuition:</strong> You give me any tiny tolerance $\varepsilon$. I must find a starting index $N$ so that every term after $N$ is trapped inside the band $(L-\varepsilon,L+\varepsilon)$.</div>
+<h3>Template: prove $x_n\to L$ directly</h3>
+<ol class="steps">
+<li><strong>Guess the limit</strong> $L$ using algebra, graphing, or intuition.</li>
+<li><strong>Scratch work:</strong> solve $|x_n-L|&lt;\varepsilon$ for a condition like $n&gt;1/\varepsilon$.</li>
+<li><strong>Choose</strong> $N$ large enough. Usually $N=\lceil \text{something in }\varepsilon\rceil+1$.</li>
+<li><strong>Proof:</strong> Let $\varepsilon&gt;0$. Choose that $N$. If $n\ge N$, show the inequality chain ending with $&lt;\varepsilon$.</li>
+</ol>
+<details open="">
+<summary>Example: prove $1/n\to 0$</summary>
+<p>Scratch work: $|1/n-0|=1/n&lt;\varepsilon$, so we want $n&gt;1/\varepsilon$.</p>
+<p>Proof: Let $\varepsilon&gt;0$. Choose $N=\lceil 1/\varepsilon\rceil+1$. Then $N&gt;1/\varepsilon$, so $1/N&lt;\varepsilon$. If $n\ge N$, then</p>
+<div class="formula">$$\left|\frac1n-0\right|=\frac1n\le \frac1N&lt;\varepsilon.$$</div>
+<p>Therefore $1/n\to0$.</p>
+</details>
+<details>
+<summary>Example: prove $\frac{n}{n^2+1}\to 0$</summary>
+<p>Since $n^2+1&gt;n^2$, we have $0&lt;\frac{n}{n^2+1}&lt;\frac{n}{n^2}=\frac1n$.</p>
+<p>Then use the same $N$ as the $1/n$ proof, or use Squeeze Theorem.</p>
+</details>
+<h3>Template: prove a sequence diverges by contradiction</h3>
+<ol class="steps">
+<li>Assume the sequence converges to some $L$.</li>
+<li>Pick a useful $\varepsilon$, often $\varepsilon=1/2$ or less than half the gap between two repeating values.</li>
+<li>Use the definition to force two far-apart terms to both be close to $L$.</li>
+<li>Use triangle inequality to get an impossible result.</li>
+</ol>
+<div class="warnbox"><strong>Common mistake:</strong> Saying “it jumps around” is intuition, not a proof. For $(-1)^n$, show two subsequences go to different limits or use the contradiction proof.</div>
+</section>
+<section id="metric-convergence">
+<span class="tag def">Definition</span>
+<h2>2. Convergent sequence in a metric space</h2>
+<div class="video-grid"><div class="video-card"><h4>Neighborhood of a Point</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/M694UFkNlFE?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Neighborhood of a Point"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=M694UFkNlFE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=24" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Intro to Open Sets</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/pnWgj8jjs3w?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Intro to Open Sets"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=pnWgj8jjs3w&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=70" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Triangle Inequality</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/051WWg9twO0?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Triangle Inequality"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=051WWg9twO0&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=15" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p>In a metric space $(X,d)$, a sequence $\{x_n\}$ converges to $x\in X$ if</p>
+<div class="formula">$$\forall \varepsilon&gt;0,\ \exists N\in\mathbb N\text{ such that }n\ge N\Rightarrow d(x_n,x)&lt;\varepsilon.$$</div>
+<div class="bluebox"><strong>Only change:</strong> replace $|x_n-x|$ with $d(x_n,x)$. Everything else about the quantifiers is the same.</div>
+<h3>Problem template</h3>
+<ol class="steps">
+<li>Write down the metric $d(x,y)$.</li>
+<li>Plug in $x_n$ and the proposed limit $x$.</li>
+<li>Simplify $d(x_n,x)&lt;\varepsilon$.</li>
+<li>Choose $N$ from the simplified inequality.</li>
+</ol>
+<details>
+<summary>Example: $x_n=1/n$ in the arctan metric</summary>
+<p>Let $d(x,y)=|\arctan x-\arctan y|$. To prove $1/n\to0$:</p>
+<div class="formula">$$d(1/n,0)=|\arctan(1/n)-\arctan(0)|=\arctan(1/n).$$</div>
+<p>We want $\arctan(1/n)&lt;\varepsilon$. Since arctan is increasing, it is enough to make $1/n&lt;\tan\varepsilon$ for small positive $\varepsilon$.</p>
+</details>
+</section>
+<section id="cauchy">
+<span class="tag def">Definition</span>
+<h2>3. Cauchy sequence</h2>
+<div class="video-grid"><div class="video-card"><h4>Intro to Cauchy Sequences</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/VNoHcFoawTg?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Intro to Cauchy Sequences"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=VNoHcFoawTg&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=59" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Cauchy iff Convergent</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/1h_CErk0NFs?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Cauchy iff Convergent"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=1h_CErk0NFs&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=60" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Cauchy Sequences are Bounded</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/GulH7nS_65c?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Cauchy Sequences are Bounded"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=GulH7nS_65c&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=61" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Convergent Sequences are Cauchy</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/SubZMuVBajM?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Convergent Sequences are Cauchy"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=SubZMuVBajM&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=62" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>In $\mathbb R$:</strong> $\{x_n\}$ is Cauchy if</p>
+<div class="formula">$$\forall \varepsilon&gt;0,\ \exists N\in\mathbb N\text{ such that }n,k\ge N\Rightarrow |x_n-x_k|&lt;\varepsilon.$$</div>
+<p><strong>In a metric space $(X,d)$:</strong></p>
+<div class="formula">$$n,k\ge N\Rightarrow d(x_n,x_k)&lt;\varepsilon.$$</div>
+<div class="bluebox"><strong>Convergent vs. Cauchy:</strong> Convergent means the terms get close to a known limit. Cauchy means the terms get close to each other, even before you know the limit.</div>
+<h3>Template: prove a sequence is Cauchy directly</h3>
+<ol class="steps">
+<li>Start with $|x_n-x_k|$.</li>
+<li>Bound it using expressions that go to $0$ when $n,k$ are large.</li>
+<li>Choose $N$ so each part is less than $\varepsilon/2$ or $\varepsilon$.</li>
+<li>Conclude $|x_n-x_k|&lt;\varepsilon$ for all $n,k\ge N$.</li>
+</ol>
+<details open="">
+<summary>Example: prove $1/n$ is Cauchy</summary>
+<p>For $n,k\ge N$:</p>
+<div class="formula">$$\left|\frac1n-\frac1k\right|\le \left|\frac1n\right|+\left|\frac1k\right|\le \frac1N+\frac1N=\frac2N.$$</div>
+<p>Choose $N&gt;2/\varepsilon$. Then $2/N&lt;\varepsilon$.</p>
+</details>
+<h3>Template: prove not Cauchy</h3>
+<ol class="steps">
+<li>Pick one $\varepsilon&gt;0$ that will fail, usually based on a repeated gap.</li>
+<li>Show that no matter how large $N$ is, you can find $n,k\ge N$ with $|x_n-x_k|\ge\varepsilon$.</li>
+</ol>
+<details>
+<summary>Example: $(-1)^n$ is not Cauchy</summary>
+<p>Take $\varepsilon=1$. For any $N$, choose an even $n\ge N$ and an odd $k\ge N$. Then $x_n=1$ and $x_k=-1$, so $|x_n-x_k|=2\ge1$.</p>
+</details>
+</section>
+<section id="sup-inf">
+<span class="tag def">Definition</span>
+<h2>4. Supremum and infimum</h2>
+<div class="video-grid"><div class="video-card"><h4>Definition of Supremum and Infimum</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/QRGIhqz9vh4?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Definition of Supremum and Infimum"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=QRGIhqz9vh4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=4" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Epsilon Definition of Sup/Inf</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/lCpoEWJRYNk?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Epsilon Definition of Sup/Inf"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=lCpoEWJRYNk&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=6" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Archimedean Principle</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/sG1FHUPdmxk?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Archimedean Principle"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=sG1FHUPdmxk&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=12" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<div class="grid-2">
+<div class="mini"><h4>Supremum</h4><p>$s=\sup A$ means $s$ is the least upper bound. It is the tightest ceiling.</p></div>
+<div class="mini"><h4>Infimum</h4><p>$m=\inf A$ means $m$ is the greatest lower bound. It is the tightest floor.</p></div>
+</div>
+<h3>Two-part proof for $s=\sup A$</h3>
+<ol class="steps">
+<li>Show $s$ is an upper bound: for all $a\in A$, $a\le s$.</li>
+<li>Show it is the least upper bound: if $u$ is any upper bound, then $s\le u$.</li>
+</ol>
+<h3>Epsilon version for supremum</h3>
+<p>If $s=\sup A$, then for every $\varepsilon&gt;0$, there exists $a\in A$ such that</p>
+<div class="formula">$$s-\varepsilon<a\le div="" s.$$<="">
+<p>This says: if you go even a tiny bit below the supremum, the set must have some element above that point.</p>
+<details open="">
+<summary>Example: prove $\sup(0,1)=1$</summary>
+<p>First, $1$ is an upper bound because every $x\in(0,1)$ satisfies $x\le1$.</p>
+<p>Second, if $u&lt;1$, choose a point between $u$ and $1$, for example $x=(u+1)/2$ if $u&gt;0$. Then $x\in(0,1)$ and $x&gt;u$, so $u$ cannot be an upper bound. Therefore no number smaller than $1$ is an upper bound, so $1$ is the least upper bound.</p>
+</details>
+<details>
+<summary>Example: prove $\inf\{1/n:n\in\mathbb N}\}=0$</summary>
+<p>First, $0$ is a lower bound because $1/n&gt;0$ for all $n$.</p>
+<p>Second, if $m&gt;0$, choose $n&gt;1/m$ by the Archimedean Principle. Then $1/n<m$, $0$.<="" $m$="" a="" bound="" bound.="" greatest="" is="" lower="" not="" p="" so="" the="" therefore="">
+</m$,></p></details>
+</a\le></div></section>
+<section id="lub">
+<span class="tag tool">Theorem</span>
+<h2>5. Least Upper Bound Property of $\mathbb R$</h2>
+<div class="video-grid"><div class="video-card"><h4>Supremum and Infimum</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/QRGIhqz9vh4?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Supremum and Infimum"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=QRGIhqz9vh4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=4" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Nested Interval Property and Proof</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/bihVbul-pto?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Nested Interval Property and Proof"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=bihVbul-pto&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=13" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Playlist item #9: Completeness/Infimums (may be members only)</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Playlist item #9: Completeness/Infimums (may be members only)"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=9" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Precise statement:</strong> Every nonempty subset of $\mathbb R$ that is bounded above has a supremum in $\mathbb R$.</p>
+<div class="bluebox"><strong>Intuition:</strong> The real numbers do not have “holes.” If a set has a ceiling, it has a tightest ceiling inside $\mathbb R$.</div>
+<h3>How it shows up in problems</h3>
+<ol class="steps">
+<li>You have a nonempty set $A\subseteq\mathbb R$.</li>
+<li>You show $A$ is bounded above.</li>
+<li>Then you are allowed to say $\sup A$ exists.</li>
+<li>Use that supremum as the candidate limit, especially in the Monotone Convergence Theorem.</li>
+</ol>
+<div class="warnbox"><strong>Non-example:</strong> In $\mathbb Q$, the set $\{q\in\mathbb Q:q^2&lt;2\}$ is bounded above in $\mathbb Q$, but the natural supremum would be $\sqrt2$, which is not rational. This is why $\mathbb Q$ is not complete.</div>
+</section>
+<section id="limsup-liminf">
+<span class="tag def">Definition</span>
+<h2>6. Limit superior and limit inferior</h2>
+<div class="video-grid"><div class="video-card"><h4>Limit Superior and Limit Inferior Explained</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/P0xaphc2cCo?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Limit Superior and Limit Inferior Explained"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=P0xaphc2cCo&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=46" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Sequence Order Limit Theorem</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Sequence Order Limit Theorem"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=47" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Bounded Set Contains Sequence Converging to Supremum</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Bounded Set Contains Sequence Converging to Supremum"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=48" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p>For a bounded sequence $\{x_n\}$, define the tail supremum and tail infimum:</p>
+<div class="formula">$$a_n=\sup\{x_k:k\ge n\},\qquad b_n=\inf\{x_k:k\ge n\}.$$</div>
+<p>Then</p>
+<div class="formula">$$\limsup_{n\to\infty}x_n=\lim_{n\to\infty}a_n,\qquad \liminf_{n\to\infty}x_n=\lim_{n\to\infty}b_n.$$</div>
+<div class="bluebox"><strong>Intuition:</strong> $\limsup$ is the eventual ceiling. $\liminf$ is the eventual floor. Ignore finite early behavior and ask: what high and low values keep appearing forever?</div>
+<h3>Fast computation method</h3>
+<ol class="steps">
+<li>Look at the long-term behavior, not the first few terms.</li>
+<li>Find the highest value or subsequential limit that keeps happening forever. That is the limsup.</li>
+<li>Find the lowest value or subsequential limit that keeps happening forever. That is the liminf.</li>
+<li>If they are equal, the sequence converges to that common value.</li>
+</ol>
+<details open="">
+<summary>Example: $x_n=(-1)^n$</summary>
+<p>The sequence keeps hitting $1$ and $-1$ forever. So:</p>
+<div class="formula">$$\limsup x_n=1,\qquad \liminf x_n=-1.$$</div>
+</details>
+<details>
+<summary>Example: $x_n=1/n$</summary>
+<p>The tails are positive and shrink toward $0$. The largest value in the $n$-tail is $1/n$, and the infimum of every tail is $0$.</p>
+<div class="formula">$$\limsup x_n=0,\qquad \liminf x_n=0.$$</div>
+</details>
+<details>
+<summary>Example: periodic sequence $0,1,2,0,1,2,\ldots$</summary>
+<p>Each tail still contains $0,1,2$ forever, so:</p>
+<div class="formula">$$\limsup x_n=2,\qquad \liminf x_n=0.$$</div>
+</details>
+</section>
+<section id="metric-space">
+<span class="tag def">Definition</span>
+<h2>7. Metric space and metric/distance function</h2>
+<div class="video-grid"><div class="video-card"><h4>Triangle Inequality</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/051WWg9twO0?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Triangle Inequality"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=051WWg9twO0&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=15" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Reverse Triangle Inequality</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/4OmIRB5Zv-4?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Reverse Triangle Inequality"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=4OmIRB5Zv-4&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=16" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Neighborhoods</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/M694UFkNlFE?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Neighborhoods"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=M694UFkNlFE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=24" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Open Sets</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/pnWgj8jjs3w?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Open Sets"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=pnWgj8jjs3w&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=70" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p>A metric space is a set $X$ with a distance function $d:X\times X\to\mathbb R$ satisfying, for all $x,y,z\in X$:</p>
+<table>
+<thead><tr><th>Metric rule</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Positive definiteness</td><td>$d(x,y)\ge0$ and $d(x,y)=0$ iff $x=y$.</td></tr>
+<tr><td>Symmetry</td><td>$d(x,y)=d(y,x)$.</td></tr>
+<tr><td>Triangle inequality</td><td>$d(x,z)\le d(x,y)+d(y,z)$.</td></tr>
+</tbody>
+</table>
+<h3>Template: prove something is a metric</h3>
+<ol class="steps">
+<li>Check distances are never negative.</li>
+<li>Check distance is $0$ exactly when the two points are the same.</li>
+<li>Check symmetry by swapping $x$ and $y$.</li>
+<li>Prove triangle inequality. This is usually the hardest part.</li>
+</ol>
+<h3>Common examples</h3>
+<div class="grid-2">
+<div class="mini"><h4>Standard metric on $\mathbb R$</h4><p>$d(x,y)=|x-y|$.</p></div>
+<div class="mini"><h4>Discrete metric</h4><p>$d(x,y)=0$ if $x=y$ and $1$ if $x\ne y$.</p></div>
+<div class="mini"><h4>Euclidean metric</h4><p>$d(x,y)=\sqrt{(x_1-y_1)^2+\cdots+(x_n-y_n)^2}$.</p></div>
+<div class="mini"><h4>Arctan metric</h4><p>$d(x,y)=|\arctan x-\arctan y|$.</p></div>
+</div>
+</section>
+<section id="complete">
+<span class="tag def">Definition</span>
+<h2>8. Completeness</h2>
+<div class="video-grid"><div class="video-card"><h4>Cauchy iff Convergent</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/1h_CErk0NFs?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Cauchy iff Convergent"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=1h_CErk0NFs&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=60" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Nested Interval Property</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/bihVbul-pto?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Nested Interval Property"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=bihVbul-pto&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=13" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Bolzano-Weierstrass via Nested Intervals</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/pNRl9dmZ2LA?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Bolzano-Weierstrass via Nested Intervals"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=pNRl9dmZ2LA&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=58" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p>A metric space $(X,d)$ is complete if every Cauchy sequence in $X$ converges to a point in $X$.</p>
+<div class="formula">$$(X,d)\text{ complete}\quad\Longleftrightarrow\quad \text{every Cauchy sequence in }X\text{ has its limit inside }X.$$</div>
+<div class="bluebox"><strong>Key idea:</strong> Completeness means no missing limit points for Cauchy sequences.</div>
+<h3>How to prove not complete</h3>
+<ol class="steps">
+<li>Find a sequence inside the space.</li>
+<li>Show it is Cauchy.</li>
+<li>Show its natural limit is not inside the space.</li>
+<li>Conclude the space is not complete.</li>
+</ol>
+<details open="">
+<summary>Example: $((0,1),|\cdot|)$ is not complete</summary>
+<p>The sequence $x_n=1/n$ is in $(0,1)$ for $n\ge2$ and is Cauchy, but it converges to $0$, and $0\notin(0,1)$. So $(0,1)$ is not complete.</p>
+</details>
+<details>
+<summary>Example: $([0,1],|\cdot|)$ is complete</summary>
+<p>Any Cauchy sequence in $[0,1]$ is Cauchy in $\mathbb R$, so it converges to some real number. Since $[0,1]$ is closed, the limit remains in $[0,1]$.</p>
+</details>
+</section>
+<section id="mct">
+<span class="tag tool">Theorem</span>
+<h2>9. Monotone Convergence Theorem</h2>
+<div class="video-grid"><div class="video-card"><h4>What are Monotone Sequences?</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/E_vaJWaeNSU?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="What are Monotone Sequences?"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=E_vaJWaeNSU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=43" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Detailed Proof of MCT</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/4NURDmE79VU?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Detailed Proof of MCT"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=4NURDmE79VU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=44" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Using MCT</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/AuvBS7UKxqU?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Using MCT"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=AuvBS7UKxqU&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=45" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Precise statement:</strong> A monotone sequence is bounded if and only if it is convergent. More specifically:</p>
+<div class="formula">$$\text{If }x_n\text{ is increasing and bounded, then }\lim x_n=\sup\{x_n:n\in\mathbb N\}.$$</div>
+<div class="formula">$$\text{If }x_n\text{ is decreasing and bounded, then }\lim x_n=\inf\{x_n:n\in\mathbb N\}.$$</div>
+<h3>Template: use MCT</h3>
+<ol class="steps">
+<li>Show monotone: prove $x_n\le x_{n+1}$ or $x_n\ge x_{n+1}$.</li>
+<li>Show bounded: find an upper bound if increasing, or lower bound if decreasing.</li>
+<li>State: by MCT, the sequence converges.</li>
+<li>If asked for the limit, identify the supremum or infimum.</li>
+</ol>
+<div class="warnbox"><strong>Common mistake:</strong> “Looks increasing” is not enough. You must show it algebraically, usually by comparing $x_{n+1}-x_n$ or $x_{n+1}/x_n$.</div>
+</section>
+<section id="squeeze">
+<span class="tag tool">Theorem</span>
+<h2>10. Squeeze Theorem</h2>
+<div class="video-grid"><div class="video-card"><h4>Proof: Sequence Squeeze Theorem</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/hYY9piVkB6g?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Proof: Sequence Squeeze Theorem"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=hYY9piVkB6g&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=41" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Example: 1/sqrt(n) -&gt; 0</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/HBtn8uy3iGE?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Example: 1/sqrt(n) -&gt; 0"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=HBtn8uy3iGE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=20" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Sequence Order Limit Theorem</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Sequence Order Limit Theorem"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=47" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Precise statement:</strong> If $a_n\le x_n\le b_n$ for all sufficiently large $n$, and</p>
+<div class="formula">$$a_n\to L\quad\text{and}\quad b_n\to L,$$</div>
+<p>then $x_n\to L$.</p>
+<h3>Template: use Squeeze</h3>
+<ol class="steps">
+<li>Find a lower bound $a_n$ and upper bound $b_n$ for $x_n$.</li>
+<li>Show both bounding sequences converge to the same limit $L$.</li>
+<li>Conclude $x_n\to L$ by Squeeze Theorem.</li>
+</ol>
+<details open="">
+<summary>Example: $1/\sqrt n\to0$</summary>
+<p>A clean direct proof uses:</p>
+<div class="formula">$$\frac1{\sqrt n}&lt;\varepsilon\quad\Longleftrightarrow\quad n&gt;\frac1{\varepsilon^2}.$$</div>
+<p>Choose $N&gt;1/\varepsilon^2$.</p>
+</details>
+<details>
+<summary>Example: $\frac{\sin n}{n}\to0$</summary>
+<p>Since $-1\le\sin n\le1$,</p>
+<div class="formula">$$-\frac1n\le \frac{\sin n}{n}\le \frac1n.$$</div>
+<p>Both $-1/n$ and $1/n$ converge to $0$, so $\sin n/n\to0$.</p>
+</details>
+</section>
+<section id="ratio">
+<span class="tag tool">Theorem</span>
+<h2>11. Ratio Test for convergence of sequences</h2>
+<div class="video-grid"><div class="video-card"><h4>Sequence Limit Laws</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/dWLhfYUb3wc?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Sequence Limit Laws"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=dWLhfYUb3wc&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=34" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Intro to Infinite Series</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/-YcQu_rZYSE?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Intro to Infinite Series"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=-YcQu_rZYSE&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=65" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Full playlist search: ratio/series</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Full playlist search: ratio/series"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Your course version:</strong> Let $x_n\ne0$ eventually and suppose</p>
+<div class="formula">$$L=\lim_{n\to\infty}\left|\frac{x_{n+1}{x_n}\right|$$</div>
+<p>exists. Then:</p>
+<ul>
+<li>If $L&lt;1$, then $x_n\to0$.</li>
+<li>If $L&gt;1$, then $\{x_n\}$ is unbounded, hence diverges.</li>
+<li>If $L=1$, the test is inconclusive.</li>
+</ul>
+<div class="warnbox"><strong>Playlist note:</strong> I did not find an exact “Ratio Test for sequences” video in this playlist. The closest supports are the sequence limit laws and the series section. Use your Day 5 notes as the main source for this theorem.</div>
+<h3>Template: use the Ratio Test</h3>
+<ol class="steps">
+<li>Compute $\left|x_{n+1}/x_n\right|$.</li>
+<li>Simplify until it is easy to take the limit.</li>
+<li>If the limit is $&lt;1$, conclude $x_n\to0$.</li>
+<li>If the limit is $&gt;1$, conclude unbounded/divergent.</li>
+<li>If the limit is $1$, switch methods.</li>
+</ol>
+<details open="">
+<summary>Example: $x_n=2^n/n!$</summary>
+<div class="formula">$$\left|\frac{x_{n+1}{x_n}\right|=\frac{2^{n+1}{(n+1)!}\cdot\frac{n!}{2^n}=\frac2{n+1}\to0&lt;1.$$</div>
+<p>Therefore $2^n/n!\to0$.</p>
+</details>
+<details>
+<summary>Example: $x_n=2^n$</summary>
+<div class="formula">$$\left|\frac{x_{n+1}{x_n}\right|=\frac{2^{n+1}{2^n}=2&gt;1.$$</div>
+<p>So $2^n$ is unbounded and diverges.</p>
+</details>
+</section>
+<section id="bw">
+<span class="tag tool">Theorem</span>
+<h2>12. Bolzano-Weierstrass Theorem</h2>
+<div class="video-grid"><div class="video-card"><h4>Intro to Subsequences</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/KqX0mKcV_3A?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Intro to Subsequences"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=KqX0mKcV_3A&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=39" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Monotone Subsequence Theorem</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/videoseries?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Monotone Subsequence Theorem"></iframe></div><a class="yt-link" href="https://www.youtube.com/playlist?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=56" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Short Proof of Bolzano-Weierstrass</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/EGVNs0AxEKw?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Short Proof of Bolzano-Weierstrass"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=EGVNs0AxEKw&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=57" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Bolzano-Weierstrass via Nested Intervals</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/pNRl9dmZ2LA?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Bolzano-Weierstrass via Nested Intervals"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=pNRl9dmZ2LA&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=58" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<p><strong>Sequence version:</strong> Every bounded sequence of real numbers has a convergent subsequence.</p>
+<div class="bluebox"><strong>Intuition:</strong> A bounded sequence cannot escape to infinity. Even if it jumps around, some subsequence must settle down.</div>
+<h3>How to use it</h3>
+<ol class="steps">
+<li>Show the sequence is bounded.</li>
+<li>State: by Bolzano-Weierstrass, there exists a convergent subsequence.</li>
+<li>If needed, name it $x_{n_k}$ and call its limit $L$.</li>
+</ol>
+<h3>How it helps prove divergence</h3>
+<p>If you can find two subsequences with different limits, the original sequence cannot converge.</p>
+<div class="video-grid"><div class="video-card"><h4>Prove Sequence Diverges with Subsequences</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/VrhtTJrN_eI?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Prove Sequence Diverges with Subsequences"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=VrhtTJrN_eI&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=50" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Subsequences Same Limit Criterion</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/0oRN_pxq2IM?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Subsequences Same Limit Criterion"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=0oRN_pxq2IM&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=49" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+</section>
+<section id="prove-convergence">
+<span class="tag proof">Exam writing</span>
+<h2>13. How to prove a sequence converges</h2>
+<p>This is the main exam skill. The trick is choosing the shortest valid method.</p>
+<table>
+<thead><tr><th>Problem type</th><th>Best method</th><th>Proof sentence to use</th></tr></thead>
+<tbody>
+<tr><td>Explicit formula like $1/n$, $n/(n^2+1)$</td><td>Direct $\varepsilon$ proof or Squeeze</td><td>“Let $\varepsilon&gt;0$. Choose $N=\cdots$.”</td></tr>
+<tr><td>Trapped expression like $\sin n/n$</td><td>Squeeze</td><td>“Since $a_n\le x_n\le b_n$ and both bounds go to $L$, by Squeeze…”</td></tr>
+<tr><td>Recursive or monotone-looking</td><td>MCT</td><td>“The sequence is monotone and bounded, so it converges by MCT.”</td></tr>
+<tr><td>Factorials/exponentials</td><td>Ratio Test</td><td>“The ratio tends to $L&lt;1$, so $x_n\to0$.”</td></tr>
+<tr><td>Need existence of subsequence</td><td>Bolzano-Weierstrass</td><td>“The sequence is bounded, so it has a convergent subsequence.”</td></tr>
+<tr><td>No limit known but terms bunch together</td><td>Cauchy</td><td>“The sequence is Cauchy; since $\mathbb R$ is complete, it converges.”</td></tr>
+</tbody>
+</table>
+<h3>Reusable proof skeleton: direct convergence</h3>
+<div class="formula"><code>Proof. Let ε &gt; 0. Choose N = ______. Then for every n ≥ N,
+|x_n - L| = ______ ≤ ______ &lt; ε.
+Therefore x_n → L.</code></div>
+<h3>Reusable proof skeleton: theorem-based</h3>
+<div class="formula"><code>Proof. We verify the assumptions of [theorem].
+First, ______.
+Second, ______.
+Therefore, by [theorem], the sequence converges.</code></div>
+</section>
+<section id="compute-limsup">
+<span class="tag proof">Exam writing</span>
+<h2>14. How to compute limsup and liminf</h2>
+<div class="video-grid"><div class="video-card"><h4>Limsup/Liminf Explained</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/P0xaphc2cCo?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Limsup/Liminf Explained"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=P0xaphc2cCo&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=46" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Subsequences</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/KqX0mKcV_3A?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Subsequences"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=KqX0mKcV_3A&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=39" rel="noopener" target="_blank">Open on YouTube</a></div><div class="video-card"><h4>Bolzano-Weierstrass</h4><div class="video-frame"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" data-yt-src="https://www.youtube.com/embed/EGVNs0AxEKw?list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;rel=0&amp;modestbranding=1" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="about:blank" title="Bolzano-Weierstrass"></iframe></div><a class="yt-link" href="https://www.youtube.com/watch?v=EGVNs0AxEKw&amp;list=PLztBpqftvzxWo4HxUYV58ENhxHV32Wxli&amp;index=57" rel="noopener" target="_blank">Open on YouTube</a></div></div>
+<h3>Method A: tail sup/inf method</h3>
+<ol class="steps">
+<li>Write the $n$-tail: $\{x_k:k\ge n\}$.</li>
+<li>Find $a_n=\sup$ of that tail.</li>
+<li>Find $b_n=\inf$ of that tail.</li>
+<li>Take $\lim a_n$ and $\lim b_n$.</li>
+</ol>
+<h3>Method B: subsequential-limit method</h3>
+<ol class="steps">
+<li>Find all values the sequence approaches along subsequences.</li>
+<li>The largest subsequential limit is $\limsup$.</li>
+<li>The smallest subsequential limit is $\liminf$.</li>
+</ol>
+<table>
+<thead><tr><th>Sequence</th><th>Behavior</th><th>$\limsup$</th><th>$\liminf$</th></tr></thead>
+<tbody>
+<tr><td>$1/n$</td><td>decreases to $0$</td><td>$0$</td><td>$0$</td></tr>
+<tr><td>$(-1)^n$</td><td>alternates $-1,1$</td><td>$1$</td><td>$-1$</td></tr>
+<tr><td>$(-1)^n+1/n$</td><td>even terms near $1$, odd terms near $-1$</td><td>$1$</td><td>$-1$</td></tr>
+<tr><td>$0,1,2,0,1,2,\ldots$</td><td>periodic</td><td>$2$</td><td>$0$</td></tr>
+<tr><td>$x_n=1$ if $n$ is a square, $0$ otherwise</td><td>both $1$ and $0$ happen forever</td><td>$1$</td><td>$0$</td></tr>
+</tbody>
+</table>
+<div class="goodbox"><strong>Convergence test:</strong> For a bounded sequence, $x_n$ converges if and only if $\limsup x_n=\liminf x_n$. If equal, the common value is the limit.</div>
+</section>
+<section id="practice-set">
+<span class="tag exam">Practice</span>
+<h2>Practice set with answers</h2>
+<div class="checklist">
+<label><input type="checkbox"/> I can state the convergence definition without looking.</label>
+<label><input type="checkbox"/> I can state the Cauchy definition without looking.</label>
+<label><input type="checkbox"/> I can prove a simple sequence converges from the definition.</label>
+<label><input type="checkbox"/> I can compute limsup/liminf for oscillating sequences.</label>
+<label><input type="checkbox"/> I can choose between Squeeze, MCT, Ratio Test, BW, and Cauchy.</label>
+</div>
+<details>
+<summary>1. Prove $\frac{3n+1}{n+2}\to3$.</summary>
+<p>Compute:</p>
+<div class="formula">$$\left|\frac{3n+1}{n+2}-3\right|=\left|\frac{3n+1-3n-6}{n+2}\right|=\frac5{n+2}.$$</div>
+<p>Choose $N&gt;5/\varepsilon$. Then for $n\ge N$, $5/(n+2)&lt;5/n\le5/N&lt;\varepsilon$.</p>
+</details>
+<details>
+<summary>2. Show $\sin n/n\to0$.</summary>
+<p>Use Squeeze: $-1/n\le \sin n/n\le1/n$. Both bounds go to $0$.</p>
+</details>
+<details>
+<summary>3. Find $\limsup$ and $\liminf$ of $x_n=(-1)^n+1/n$.</summary>
+<p>Even terms go to $1$, odd terms go to $-1$. Therefore $\limsup x_n=1$ and $\liminf x_n=-1$.</p>
+</details>
+<details>
+<summary>4. Prove $2^n/n!\to0$.</summary>
+<p>Use Ratio Test:</p>
+<div class="formula">$$\left|\frac{x_{n+1}{x_n}\right|=\frac2{n+1}\to0&lt;1.$$</div>
+<p>Therefore $x_n\to0$.</p>
+</details>
+<details>
+<summary>5. Is $((0,1),|\cdot|)$ complete?</summary>
+<p>No. The sequence $1/n$ is Cauchy but converges to $0$, which is not in $(0,1)$.</p>
+</details>
+<details>
+<summary>6. State Bolzano-Weierstrass and give an example.</summary>
+<p>Every bounded sequence in $\mathbb R$ has a convergent subsequence. Example: $(-1)^n$ is bounded and has subsequences constantly $1$ and constantly $-1$, both convergent.</p>
+</details>
+</section>
+<section>
+<span class="tag warn">Notes</span>
+<h2>Source map</h2>
+<p>This HTML is organized around your MAA 4211 exam list and uploaded class notes:</p>
+<ul>
+<li>Lecture 3: absolute value, metric spaces, open balls, bounded sequences, convergence definition.</li>
+<li>Lecture 4: sequence convergence, monotone convergence, subsequences, tails, metric-space convergence.</li>
+<li>Day 5 notes: Squeeze Lemma, sequence limit laws, Ratio Test, limsup/liminf.</li>
+<li>Day 6 notes: limsup/liminf, Bolzano-Weierstrass, cluster points, Cauchy sequences, completeness, metric-space examples.</li>
+</ul>
+<p class="muted small">Some playlist videos are members-only or do not have a direct standalone match for your class topic. In those cases, I used the closest playlist item and included the class-specific solution method directly in this guide.</p>
+</section>
+</main>
+</div>
+
+<script>
+(function () {
+  function addParam(url, key, value) {
+    try {
+      const u = new URL(url);
+      if (!u.searchParams.has(key)) u.searchParams.set(key, value);
+      return u.toString();
+    } catch (e) { return url; }
+  }
+  const isFile = location.protocol === 'file:' || location.origin === 'null';
+  if (isFile) document.documentElement.classList.add('local-file');
+  document.querySelectorAll('iframe[data-yt-src]').forEach(function(frame) {
+    let src = frame.getAttribute('data-yt-src');
+    if (!isFile && (location.protocol === 'http:' || location.protocol === 'https:')) {
+      src = addParam(src, 'origin', location.origin);
+      frame.src = src;
+    }
+  });
+})();
+</script>
+</body>
+</html>
